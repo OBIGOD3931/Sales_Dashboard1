@@ -78,7 +78,7 @@ with column_1:
     st.subheader(f"{total_unit_sold:,}")
 
 with column_2:
-    st.subheader("Total Sale:")
+    st.subheader("Total Sales:")
     st.subheader(f"€ {total_sales}")
 
 with column_3:
@@ -189,3 +189,14 @@ left_column1, mid_column1, right_column1 = st.columns(3, gap = "small")
 left_column1.plotly_chart(fig_pie_segment, use_container_width=True)
 mid_column1.plotly_chart(fig_country_sales, use_container_width=True)
 right_column1.plotly_chart(fig_pie_country, use_container_width=True)
+
+
+# ---- HIDE STREAMLIT STYLE ----
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
