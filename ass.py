@@ -120,14 +120,14 @@ fig_product_sales.update_layout(
     plot_bgcolor="rgba(0,0,0,0)",
     xaxis=(dict(showgrid=False))
 )
-st.dataframe(sales_by_product)
+
 
 # SALES BY PRODUCT LINE [PIE CHART]
 fig_pie_product = px.pie(sales_by_product, names=sales_by_product.index, values=my_list[8], title='Sales by Product Pie Chart')
 
 # Display the charts in Streamlit
-st.plotly_chart(fig_product_sales)
-st.plotly_chart(fig_pie_product)
+#st.plotly_chart(fig_product_sales)
+#st.plotly_chart(fig_pie_product)
 
 
 # SALES BY SEGMENT LINE [BAR CHART]
@@ -151,8 +151,8 @@ fig_segment_sales.update_layout(
 fig_pie_segment = px.pie(sales_by_segment, names=sales_by_segment.index, values=my_list[8], title='Sales by Segment Pie Chart')
 
 # Display the charts in Streamlit
-st.plotly_chart(fig_segment_sales)
-st.plotly_chart(fig_pie_segment)
+#st.plotly_chart(fig_segment_sales)
+#st.plotly_chart(fig_pie_segment)
 
 # SALES BY COUNTRY LINE [BAR CHART]
 sales_by_country = df_selection.groupby(by=["Country"])[[my_list[8]]].sum().sort_values(by=my_list[8])
@@ -175,5 +175,17 @@ fig_country_sales.update_layout(
 fig_pie_country = px.pie(sales_by_country, names=sales_by_country.index, values=my_list[8], title='Sales by Country Pie Chart')
 
 # Display the charts in Streamlit
-st.plotly_chart(fig_country_sales)
-st.plotly_chart(fig_pie_country)
+#st.plotly_chart(fig_country_sales)
+#st.plotly_chart(fig_pie_country)
+
+
+left_column, mid_column, right_column = st.columns(3, gap = "small")
+left_column.plotly_chart(fig_product_sales, use_container_width=True)
+mid_column.plotly_chart(fig_pie_product, use_container_width=True)
+right_column.plotly_chart(fig_segment_sales, use_container_width=True)
+
+
+left_column1, mid_column1, right_column1 = st.columns(3, gap = "small")
+left_column1.plotly_chart(fig_pie_segment, use_container_width=True)
+mid_column1.plotly_chart(fig_country_sales, use_container_width=True)
+right_column1.plotly_chart(fig_pie_country, use_container_width=True)
